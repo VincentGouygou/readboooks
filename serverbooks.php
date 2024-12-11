@@ -112,7 +112,7 @@ if ( $_POST['action']=='detail') {
     $nomproprio=$row['nom']." ".$row['prenom'];
     $email=$row['email'];
 
-    $sql = "SELECT * FROM listdesthemesparlivres WHERE livreid=$idlivre";
+    $sql = "SELECT * FROM listdesthemesparlivres WHERE livreid=$idLivre";
     $result = $conn->query($sql);
 
     while ($row = $result->fetch_assoc()) {
@@ -169,7 +169,7 @@ if ( $_POST['action']=='addbook') {
     if ($result->num_rows > 0) {
       // output data of each row
       while ($row = $result->fetch_assoc()) {
-          $themes=$row['themes'];
+          // $themes=$row['themes'];
           $titre=$row['titre'];
           $auteur=$row['auteur'];
           $synopsis=$row['synopsis'];
@@ -180,7 +180,17 @@ if ( $_POST['action']=='addbook') {
           $idlivre=$row['idLivre'];
           $note=$row['note'];
           $couvThumbnail=$row['couvThumbnail'];
-      
+
+          $sql2 = "SELECT * FROM listdesthemesparlivres WHERE idlivre=$idlivre";
+          $result2 = $conn->query($sql2);
+          $response3=array();
+          if ($result2->num_rows > 0) {
+            $themes="";
+            // output data of each row
+            while ($row = $result2->fetch_assoc()) {
+                $themes.=$row['nomtheme']. " ";
+            }
+          }
             $resp=['titre' => $titre,
                         'auteur' => $auteur,
                         'idLivre' => $idlivre,
