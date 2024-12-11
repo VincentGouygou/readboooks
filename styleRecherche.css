@@ -1,0 +1,15 @@
+.salut{
+    text-align: center;
+    font-size: xx-large;
+    z-index: 1;
+}
+a:hover {
+    color: #0f0092;
+}
+a:link {
+    color: #ccc;
+}
+
+a:visited {
+    color: #c26106;
+}
